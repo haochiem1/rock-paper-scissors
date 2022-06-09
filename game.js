@@ -32,6 +32,8 @@ function playRound(playerSelection, computerSelection) {
 
     if(playerSelection == computerSelection)
     {
+        const result = document.querySelector('.Result');
+        result.innerHTML = "You Tied! Round Restarts!";
         return "You Tied! Round Restarts!";
     }
 
@@ -81,6 +83,8 @@ function playRound(playerSelection, computerSelection) {
             break;
     }
 
+    const result = document.querySelector('.Result');
+    result.innerHTML = resultString + ' ' + winner + ' beats ' + loser;
     return resultString + ' ' + winner + ' beats ' + loser;
 }
 
@@ -134,4 +138,4 @@ function game(){
     console.log(handleEnd(playerScore, comScore));
 }
 
-game();
+//game();
