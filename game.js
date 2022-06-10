@@ -145,7 +145,7 @@ function resetGame()
     const result = document.querySelector('.Result');
     result.innerHTML = "";
     const gameEnd = document.querySelector('.game-over');
-    gameEnd.innerHTML = "";
+    gameEnd.innerHTML = "<p>Select an option to challenge the computer!</p>";
     const buttons = document.querySelector('.buttons');
     buttons.innerHTML = '<button class="ROCK">Rock</button><button class="PAPER">Paper</button><button class="SCISSORS">Scissors</button>';
     
