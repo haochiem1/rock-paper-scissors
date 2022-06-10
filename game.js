@@ -1,3 +1,6 @@
+var playerScore = 0;
+var comScore = 0;
+
 function computerPlay(){
     let x = Math.floor(Math.random() * 3)
 
@@ -85,6 +88,31 @@ function playRound(playerSelection, computerSelection) {
 
     const result = document.querySelector('.Result');
     result.innerHTML = resultString + ' ' + winner + ' beats ' + loser;
+
+    if(resultString == "You Win!")
+    {
+        playerScore++;
+        const playerScoreDisplay = document.querySelector('.user-score');
+        playerScoreDisplay.innerHTML = playerScore;
+        playerScoreDisplay.style.paddingTop = "25px";
+        playerScoreDisplay.style.paddingBottom = "25px";
+        if(playerScore >= 5)
+        {
+            handleEnd(playerScore, comScore)
+        }
+    }
+    else{
+        comScore++;
+        const comScoreDisplay = document.querySelector('.com-score');
+        comScoreDisplay.innerHTML = comScore;
+        comScoreDisplay.style.paddingTop = "25px";
+        comScoreDisplay.style.paddingBottom = "25px";
+        if(comScore >= 5)
+        {
+            handleEnd(playerScore, comScore)
+        }
+    }
+
     return resultString + ' ' + winner + ' beats ' + loser;
 }
 
@@ -99,43 +127,34 @@ function handleEnd(playerScore, comScore){
         resultString = "You lose the game! "
     }
 
+    const gameEnd = document.querySelector('.game-over');
+    gameEnd.innerHTML = resultString;
+    const buttons = document.querySelector('.buttons');
+    buttons.innerHTML = "<button onclick='resetGame()'>Restart</button>";
     return resultString + playerScore + ' - ' + comScore;
 }
 
-function game(){
-    let playerScore = 0;
-    let comScore = 0;
+function resetGame()
+{
+    playerScore = 0;
+    comScore = 0;
+    const playerScoreDisplay = document.querySelector('.user-score');
+    playerScoreDisplay.innerHTML = playerScore;
+    const comScoreDisplay = document.querySelector('.com-score');
+    comScoreDisplay.innerHTML = comScore;
+    const result = document.querySelector('.Result');
+    result.innerHTML = "";
+    const gameEnd = document.querySelector('.game-over');
+    gameEnd.innerHTML = "";
+    const buttons = document.querySelector('.buttons');
+    buttons.innerHTML = '<button class="ROCK">Rock</button><button class="PAPER">Paper</button><button class="SCISSORS">Scissors</button>';
+    
+    const buttonList = document.querySelectorAll('button');
 
-    for (let i = 0; i < 5; i++)
-    {
-        var playerSelection = prompt("Enter your choice! Rock, Paper, or Scissors?")
-        playerSelection = validateInput(playerSelection);
+    buttonList.forEach((button) => {
 
-        if(playerSelection == "ERROR")
-        {
-            console.log("Invalid Input! Try Again");
-            i--;
-            continue;
-        }
-
-        let round = playRound(playerSelection, computerPlay());
-        console.log(round);
-        if(round == "You Tied! Round Restarts!")
-        {
-            i--;
-            continue;
-        }
-        let handleScore = round.includes("You Win!")
-        if (handleScore == true)
-        {
-            playerScore++;
-        }
-        else
-        {
-            comScore++;
-        }
-    }
-    console.log(handleEnd(playerScore, comScore));
+        button.addEventListener('click', () => {
+            playRound(button.className, computerPlay());
+        });
+    });
 }
-
-//game();

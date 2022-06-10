@@ -15,14 +15,42 @@ body
     align-items: center;
 }
 
-.header
+.header, .Result, .score-container, .game-over
 {
     font-family: 'Roboto', sans-serif;
     color: white;
 }
 
-.Result
+.score-container
 {
-    font-family: 'Roboto', sans-serif;
-    color: white;
+    display: flex;
+    font-size: 25px;
 }
+
+.user-score-container, .com-score-container
+{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+    margin: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.Result, .game-over
+{
+    margin: 30px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+Button {
+    color: white;
+    background-color: #223d73;
+    border-radius: 50px;
+    height: 4em;
+    width: 9em;
+    font-size: large;
+    font-weight: 600;
+  }
