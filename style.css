@@ -53,4 +53,5 @@ Button {
     width: 9em;
     font-size: large;
     font-weight: 600;
+    margin: 10px;
   }
